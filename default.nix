@@ -93,7 +93,10 @@ rec {
       };
       npmPackageName = if lib.hasAttr "npmPackageName" args
         then args.npmPackageName
-        else (builtins.fromJSON (builtins.readFile "${src}/package.json")).name ;
+        else
+          # https://github.com/NixOS/nix/issues/1174
+          let packageJson = builtins.unsafeDiscardStringContext (builtins.readFile "${src}/package.json");
+          in (builtins.fromJSON packageJson).name;
       publishBinsFor = if lib.hasAttr "publishBinsFor" args
         then args.publishBinsFor
         else [npmPackageName];
