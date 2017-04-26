@@ -86,7 +86,7 @@ rec {
         "--offline"
         "--frozen-lockfile"
         "--ignore-engines"
-        "--ignore-scripts"
+        /*"--ignore-scripts"*/
       ] ++ extraYarnFlags;
       deps = buildYarnPackageDeps {
         inherit name packageJson yarnLock yarnNix pkgConfig yarnFlags;
