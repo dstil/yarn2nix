@@ -23,8 +23,6 @@ function generateNix(lockedDependencies) {
     let resolved_string = dep["resolved"]
 
     if (found.hasOwnProperty(resolved_string)) {
-      console.error("HUH! Found " + resolved_string + " more than once!");
-      console.error("Ignoring second declaration..");
       continue;
     } else {
       found[resolved_string] = null;
